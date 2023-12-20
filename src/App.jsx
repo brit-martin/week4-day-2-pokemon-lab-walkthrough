@@ -32,7 +32,18 @@ function formSubmitListener(event){
 
   axios.get(`https://pokeapi.co/api/v2/type/${type}`)
   .then((response) => {
-    console.log(response.data.pokemon[0].pokemon.name)
+   
+    
+  let uglyPokemonObjectArray = response.data.pokemon
+  let prettyPokemonStringArray = uglyPokemonObjectArray.map((pokeObj) => pokeObj.pokemon.name)
+
+  if(+limit > 0 ){
+    let newPokemonArray = prettyPokemonStringArray.slice(0, +limit)
+    console.log(newPokemonArray)
+  } else {
+    console.log([])
+  }
+
   })
   .catch((error) => {
     console.log(error)
