@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Card from './Card.jsx'
 import './App.css'
@@ -11,7 +11,9 @@ function App() {
   const [limit, setLimit] = useState('2')
   const [type, setType] = useState('electric')
 
-
+useEffect(() => {
+  doApiCall()
+}, [])
 
 
 function handleLimitChange(event){
@@ -26,7 +28,10 @@ function handleTypeChange(event){
 function formSubmitListener(event){
   event.preventDefault()
 
+ doApiCall()
+}
 
+function doApiCall(){
   axios.get(`https://pokeapi.co/api/v2/type/${type}`)
   .then((response) => {
    
