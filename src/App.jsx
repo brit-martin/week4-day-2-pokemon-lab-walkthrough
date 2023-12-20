@@ -2,13 +2,12 @@ import { useState } from 'react'
 import axios from 'axios'
 import Card from './Card.jsx'
 import './App.css'
-//we are pretending this is date we got from an API
-const theList = ['pikachu', 'raichu', 'voltorb']
+
 
 
 function App() {
 
-  const [pokemonList, setPokemonList] = useState(theList)
+  const [pokemonList, setPokemonList] = useState([])
   const [limit, setLimit] = useState('2')
   const [type, setType] = useState('electric')
 
@@ -39,9 +38,9 @@ function formSubmitListener(event){
 
   if(+limit > 0 ){
     let newPokemonArray = prettyPokemonStringArray.slice(0, +limit)
-    console.log(newPokemonArray)
+    setPokemonList(newPokemonArray)
   } else {
-    console.log([])
+    setPokemonList([])
   }
 
   })
